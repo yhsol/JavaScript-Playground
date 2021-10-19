@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Header,
@@ -10,6 +11,12 @@ import {
   Redirect,
   Req,
 } from '@nestjs/common';
+
+class CreateCatDto {
+  name: string;
+  age: number;
+  breed: string;
+}
 
 @Controller('cats')
 // @Controller({ host: 'admin.example.com' }) // 들어오는 요청의 HTTP 호스트가 특정값과 일치하도록 `host` 옵션 사용 가능
@@ -23,7 +30,7 @@ export class CatsController {
   @Post()
   @HttpCode(204)
   @Header('Cache-Control', 'none')
-  create(): string {
+  create(@Body() createCatDto: CreateCatDto): string {
     return 'This action adds a new cat';
   }
 
