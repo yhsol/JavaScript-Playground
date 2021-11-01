@@ -3,7 +3,6 @@ import {
   Controller,
   Get,
   Header,
-  HostParam,
   HttpCode,
   Param,
   Post,
@@ -11,12 +10,9 @@ import {
   Redirect,
   Req,
 } from '@nestjs/common';
-
-class CreateCatDto {
-  name: string;
-  age: number;
-  breed: string;
-}
+import { CatsService } from './cats.service';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { Cat } from './interfaces/cat.interface';
 
 @Controller('cats')
 // @Controller({ host: 'admin.example.com' }) // 들어오는 요청의 HTTP 호스트가 특정값과 일치하도록 `host` 옵션 사용 가능
@@ -27,17 +23,21 @@ export class CatsController {
   //     return account;
   //   }
 
+  constructor(private catsService: CatsService) {}
+
   @Post()
-  @HttpCode(204)
-  @Header('Cache-Control', 'none')
-  create(@Body() createCatDto: CreateCatDto): string {
-    return 'This action adds a new cat';
+  // @HttpCode(204)
+  // @Header('Cache-Control', 'none')
+  create(@Body() createCatDto: CreateCatDto) {
+    // return 'This action adds a new cat';
+    this.catsService.create(createCatDto);
   }
 
   @Get()
-  @Redirect('https://nestjs.com', 301)
-  findAll(@Req() request: Request): string {
-    return 'This action returns all cats';
+  // @Redirect('https://nestjs.com', 301)
+  findAll(): Promise<Cat[]> {
+    // return 'This action returns all cats';
+    return this.catsService.findAll();
   }
 
   @Get(':id')
