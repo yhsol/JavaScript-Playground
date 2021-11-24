@@ -1,0 +1,4 @@
+/node_modules
+*.zip
+token.json
+deploy.zip
