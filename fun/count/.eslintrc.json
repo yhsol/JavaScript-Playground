@@ -1,0 +1,6 @@
+{
+  "extends": "next/core-web-vitals",
+"rulse": {
+  "@next/next/no-document-import-in-page": "off",
+}
+}
