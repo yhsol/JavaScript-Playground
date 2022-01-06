@@ -2,10 +2,12 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import todos from "./todos";
 import filter from "./filter";
+import articles from "./articles";
 
 const rootReducer = combineReducers({
   todos,
   filter,
+  articles,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

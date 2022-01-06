@@ -1,10 +1,13 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useRootState } from "../modules";
+import { selAllTodo } from "../redux/stores/todo.selector";
 import { useFilter } from "./useFilter";
 import { useTodoActions } from "./useTodoActions";
 
 function useFilteredTodos() {
-  const todos = useRootState((state) => state.todos);
+  // const todos = useRootState((state) => state.todos);
+  const todos = useSelector(selAllTodo);
   const [filter] = useFilter();
 
   const filteredTodos = useMemo(

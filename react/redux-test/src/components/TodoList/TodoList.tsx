@@ -1,5 +1,6 @@
 import React from "react";
 import useFilteredTodos from "../../hooks/useFilteredTodos";
+import ReduxTodo from "../../redux/pages/Todo";
 import TodoListItem from "./TodoListItem";
 
 function TodoList() {
@@ -14,6 +15,8 @@ function TodoList() {
           key={todo.id}
         />
       ))}
+      redux
+      <ReduxTodo />
     </ul>
   );
 }

@@ -6,7 +6,7 @@ import { filterActions } from "../modules/filter";
 import useFilteredTodos from "./useFilteredTodos";
 
 describe("useFilteredTodos", () => {
-  const initialState: RootState = {
+  const initialState: Pick<RootState, "filter" | "todos"> = {
     filter: "ALL",
     todos: [
       {

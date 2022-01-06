@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { RootState } from "../modules";
 import configureMockStore from "redux-mock-store";
 
-function prepareMockReduxWrapper(initialState?: RootState) {
+function prepareMockReduxWrapper(initialState?: Partial<RootState>) {
   const store = configureMockStore()(initialState);
   const wrapper = ({ children }: { children: React.ReactNode }) => {
     return <Provider store={store as any}>{children}</Provider>;
