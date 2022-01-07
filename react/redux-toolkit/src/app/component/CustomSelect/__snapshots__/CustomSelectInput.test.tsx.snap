@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the text input: 
+      <DocumentFragment>
+          <div>
+              <label for="myTest-select">My Label</label>
+              <select class="form-control" id="myTest-select">
+                  <option>
+                      option 1
+                  </option>
+                  <option>
+                      option 2
+                  </option>
+              </select>
+          </div>
+      </DocumentFragment>
+   1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      for="myTest-select"
+    >
+      My Label
+    </label>
+    <select
+      class="form-control"
+      id="myTest-select"
+    >
+      <option>
+        option 1
+      </option>
+      <option>
+        option 2
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders the text input: 
+    <DocumentFragment>
+      <div>
+        <label
+          for="myTest-select"
+        >
+          My Label
+        </label>
+        <select
+          class="form-control"
+          id="myTest-select"
+        >
+          <option>
+            option 1
+          </option>
+          <option>
+            option 2
+          </option>
+        </select>
+      </div>
+    </DocumentFragment>
+   1`] = `
+<DocumentFragment>
+  <div>
+    <label
+      for="myTest-select"
+    >
+      My Label
+    </label>
+    <select
+      class="form-control"
+      id="myTest-select"
+    >
+      <option>
+        option 1
+      </option>
+      <option>
+        option 2
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
