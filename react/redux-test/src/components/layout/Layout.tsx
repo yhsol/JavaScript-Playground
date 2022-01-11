@@ -8,6 +8,7 @@ function Layout() {
   const goAbout = () => navigate("/about", { replace: true }); // 페이지 기록에 남기지 않음. 뒤로가기 했을 때 스킵. // 근데 잘 안되는 듯? 확인필요
   const goArticles = () => navigate("/articles");
   const goTodo = () => navigate("/todo");
+  const goToRecoilTodo = () => navigate("/recoil-todo");
   return (
     <div>
       <header style={{ background: "lightgray", padding: 16, fontSize: 24 }}>
@@ -16,6 +17,7 @@ function Layout() {
         <button onClick={goAbout}>About</button>
         <button onClick={goArticles}>Articlese</button>
         <button onClick={goTodo}>Todo</button>
+        <button onClick={goToRecoilTodo}>Recoil Todo</button>
       </header>
       <main>
         <Outlet />
