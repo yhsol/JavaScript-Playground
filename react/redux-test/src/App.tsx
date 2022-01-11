@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Todo from "./pages/Todo";
 import Stat from "./pages/Stat";
+import CharacterCounter from "./pages/CharacterCounter";
+import RecoilTodo from "./pages/RecoilTodo";
 // import { lazy } from "react";
 // const About = lazy(() => import("./pages/About"))
 // const Article = lazy(() => import("./pages/Article"))
@@ -35,6 +37,8 @@ function App() {
           <Route path={"/profiles/:username"} element={<Profile />}></Route>
           <Route path={"/todo"} element={<Todo />}></Route>
           <Route path={"/stat"} element={<Stat />}></Route>
+          <Route path={"/character"} element={<CharacterCounter />}></Route>
+          <Route path={"/recoil-todo"} element={<RecoilTodo />}></Route>
         </Route>
         <Route path={"/articles"} element={<Articles />}>
           <Route path={":id"} element={<Article />}></Route>

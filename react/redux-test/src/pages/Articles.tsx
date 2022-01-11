@@ -1,6 +1,5 @@
 import { CSSProperties } from "react";
-import { NavLink } from "react-router-dom";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useArticles from "../hooks/useArticles";
 import { Article } from "../types/Articles.types";
 

@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { useRootState } from "../modules";
 import { selAllTodo } from "../redux/stores/todo.selector";
 import { useFilter } from "./useFilter";
 import { useTodoActions } from "./useTodoActions";

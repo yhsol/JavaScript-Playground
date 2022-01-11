@@ -3,3 +3,9 @@ export type WithRequired<T, K extends keyof T> = Omit<Partial<T>, K> &
 
 export type WithOptional<T, K extends keyof T> = Omit<T, K> &
   Partial<Pick<T, K>>;
+
+export type TodoType = {
+  id: string;
+  text: string;
+  isComplete: boolean;
+};
