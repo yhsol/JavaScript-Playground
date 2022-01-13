@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Todo from "./pages/Todo";
 import CharacterCounter from "./pages/CharacterCounter";
 import RecoilTodo from "./pages/RecoilTodo";
+import CurrentUserInfo from "./pages/CurrentUserInfo";
 // import { lazy } from "react";
 // const About = lazy(() => import("./pages/About"))
 // const Article = lazy(() => import("./pages/Article"))
@@ -37,6 +38,10 @@ function App() {
           <Route path={"/todo"} element={<Todo />}></Route>
           <Route path={"/character"} element={<CharacterCounter />}></Route>
           <Route path={"/recoil-todo"} element={<RecoilTodo />}></Route>
+          <Route
+            path={"/current-user-info"}
+            element={<CurrentUserInfo />}
+          ></Route>
         </Route>
         <Route path={"/articles"} element={<Articles />}>
           <Route path={":id"} element={<Article />}></Route>
