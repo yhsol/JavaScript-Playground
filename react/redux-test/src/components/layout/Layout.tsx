@@ -10,6 +10,7 @@ function Layout() {
   const goTodo = () => navigate("/todo");
   const goToStat = () => navigate("/stat");
   const goToRecoilTodo = () => navigate("/recoil-todo");
+  const goToCurrentUserInfo = () => navigate("/current-user-info");
   return (
     <div>
       <header style={{ background: "lightgray", padding: 16, fontSize: 24 }}>
@@ -20,6 +21,7 @@ function Layout() {
         <button onClick={goTodo}>Todo</button>
         <button onClick={goToStat}>Stat</button>
         <button onClick={goToRecoilTodo}>Recoil Todo</button>
+        <button onClick={goToCurrentUserInfo}>Current User Info</button>
       </header>
       <main>
         <Outlet />
