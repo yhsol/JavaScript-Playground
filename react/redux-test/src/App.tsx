@@ -9,6 +9,7 @@ import MyPage from "./pages/MyPage";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Todo from "./pages/Todo";
+import Stat from "./pages/Stat";
 // import { lazy } from "react";
 // const About = lazy(() => import("./pages/About"))
 // const Article = lazy(() => import("./pages/Article"))
@@ -33,6 +34,7 @@ function App() {
           <Route path={"/about"} element={<About />}></Route>
           <Route path={"/profiles/:username"} element={<Profile />}></Route>
           <Route path={"/todo"} element={<Todo />}></Route>
+          <Route path={"/stat"} element={<Stat />}></Route>
         </Route>
         <Route path={"/articles"} element={<Articles />}>
           <Route path={":id"} element={<Article />}></Route>
