@@ -1,0 +1,56 @@
+<!-- 직접 DOM 업데이트 -->
+<!-- <html>
+  <body>
+    <div id="app"></div>
+    <script>
+      // Select the div element with 'app' id
+      const app = document.getElementById("app");
+
+      // Create a new H1 element
+      const header = document.createElement("h1");
+
+      // Create a new text node for the H1 element
+      const headerContent = document.createTextNode(
+        "Develop. Preview. Ship. 🚀"
+      );
+
+      // Append the text to the H1 element
+      header.appendChild(headerContent);
+
+      // Place the H1 element inside the div
+      app.appendChild(header);
+    </script>
+  </body>
+</html> -->
+
+<!-- React 사용 -->
+<html>
+  <body>
+    <div id="app"></div>
+
+    <!-- React 추가 -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Bable 추가 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 스크립트 타입 type="text/jsx" 를 통해 변환할 코드를 Bable 에 알림 -->
+    <script type="text/jsx">
+      const app = document.getElementById("app");
+
+      function Header() {
+        return <h1>Develop. Preview. Ship. 🚀</h1>
+      }
+
+      function HomePage() {
+        return (
+          <div>
+            <Header />
+          </div>
+        )
+      }
+
+      ReactDOM.render(<HomePage />, app);
+    </script>
+  </body>
+</html>
