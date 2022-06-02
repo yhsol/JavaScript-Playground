@@ -11,32 +11,48 @@ function getData(url) {
     return JSON.parse(ajax.response);
 }
 
-const newsFeed = getData(NEWS_URL);
-const ul = document.createElement('ul');
+function newsFeed() {
+    const newsFeed = getData(NEWS_URL);
+    
+    const newsList = [];
+    newsList.push('<ul>')
+    for (let i = 0; i < 10; i++) {
+        newsList.push(`
+        <li>
+            <a href="#${newsFeed[i].id}">
+                ${newsFeed[i].title} (${newsFeed[i].comments_count})
+            </a>
+        </li>
+        `);
+    }
+    newsList.push('</ul>')
 
-window.addEventListener('hashchange', () => {
-    const newsContent = getData(CONTENT_URL.replace('@id', location.hash.substr(1)));
-
-    const title = document.createElement('h1');
-    title.innerText = newsContent.title;
-
-    content.appendChild(title);
-})
-
-for (let i = 0; i < 10; i++) {
-    const div = document.createElement('div');
-
-    div.innerHTML = 
-    `
-    <li>
-        <a href="#${newsFeed[i].id}">
-            ${newsFeed[i].title} (${newsFeed[i].comments_count})
-        </a>
-    </li>
-    `;
-
-    ul.appendChild(div.firstElementChild);
+    container.innerHTML = newsList.join('');
 }
 
-container.appendChild(ul);
-container.appendChild(content);
+function newsDetail() {
+    const newsContent = getData(CONTENT_URL.replace('@id', location.hash.substr(1)));
+    
+    container.innerHTML = `
+    <h1>${newsContent.title}</h1>
+
+    <div>
+        <a href="#">to list</a>
+    </div>    
+    `;
+}
+
+function router() {
+    const hash = location.hash;
+    
+    if (hash === '') {
+        newsFeed();
+    } else {
+        newsDetail();
+    }
+
+}
+
+window.addEventListener('hashchange', router)
+
+router();
