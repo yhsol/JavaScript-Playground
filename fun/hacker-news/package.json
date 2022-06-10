@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  },
+  "scripts": {
+    "runParcel": "parcel index.html"
+  }
+}
