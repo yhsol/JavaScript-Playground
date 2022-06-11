@@ -13,7 +13,7 @@ type News = {
 }
 
 type NewsFeed = News & {
-    points: number,
+    readonly points: number,
     comments_count: number,
     read?: boolean,
 }
