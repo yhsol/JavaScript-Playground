@@ -39,34 +39,45 @@ const store: Store = {
 }
 
 class Api {
-    url: string;
-    ajax: XMLHttpRequest;
-
-    // 주입 받아할 요소만 params 로 받음
-    constructor(url: string) {
-        this.url = url;
-        this.ajax = new XMLHttpRequest();
-    }
-
-    protected getRequest<T>(): T {
-        this.ajax.open('GET', this.url, false);
-        this.ajax.send();
+    getRequest<T>(url: string): T {
+        const ajax = new XMLHttpRequest();
+        ajax.open('GET', url, false);
+        ajax.send();
         
-        return JSON.parse(this.ajax.response);
+        return JSON.parse(ajax.response);
     }
 }
 
-class NewsFeedApi extends Api {
+// targetClass 로 제공된 class 에 baseClasses 로 제공된 class 들의 기능을 합성한다.
+function applyApiMixins(targetClass: any, baseClasses: any[]) {
+    baseClasses.forEach(baseClass => {
+        Object.getOwnPropertyNames(baseClass.prototype).forEach(name => {
+            const descriptor = Object.getOwnPropertyDescriptor(baseClass.prototype, name);
+
+            if (descriptor) {
+                Object.defineProperty(targetClass.prototype, name, descriptor);
+            }
+        })
+    })
+}
+
+interface NewsFeedApi extends Api {};
+interface NewsDetailApi extends Api {};
+
+class NewsFeedApi {
     getData(): NewsFeed[] {
-        return this.getRequest<NewsFeed[]>();
+        return this.getRequest<NewsFeed[]>(NEWS_URL);
     }
 }
 
-class NewsDetailApi extends Api {
-    getData(): NewsDetail {
-        return this.getRequest<NewsDetail>();
+class NewsDetailApi {
+    getData(id: string): NewsDetail {
+        return this.getRequest<NewsDetail>(CONTENT_URL.replace('@id', id));
     }
 }
+
+applyApiMixins(NewsFeedApi, [Api]);
+applyApiMixins(NewsDetailApi, [Api]);
 
 // function getData<AjaxResponse>(url: string): AjaxResponse {
 //     ajax.open('GET', url, false);
@@ -74,6 +85,12 @@ class NewsDetailApi extends Api {
     
 //     return JSON.parse(ajax.response);
 // }
+
+class NewsFeedView {
+    constructor() {
+        
+    }
+}
 
 function makeFeeds(feeds: NewsFeed[]) {
     for (let i = 0; i < feeds.length; i++) {
@@ -92,7 +109,7 @@ function updateView(html: string) {
 }
 
 function newsFeed() {
-    const api = new NewsFeedApi(NEWS_URL);
+    const api = new NewsFeedApi();
     let newsFeeds: NewsFeed[] = store.feeds; // getData(NEWS_URL);
     const newsList = [];
 
@@ -157,8 +174,8 @@ function newsFeed() {
 
 function newsDetail() {
     const id = location.hash.substr(7)
-    const api = new NewsDetailApi(CONTENT_URL.replace('@id', id));
-    const newsContent = api.getData();
+    const api = new NewsDetailApi();
+    const newsContent = api.getData(id);
 
     let template = `
         <div class="bg-gray-600 min-h-screen pb-8">

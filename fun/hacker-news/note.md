@@ -13,3 +13,11 @@
     - 클래스를 조금 더 독립적으로 바라봄
     - 상하관계를 명시하지 않음
     - 필요할 때 조합하여 사용
+    - 믹스인 사용이유
+        - extends 방식은 코드에 명시해야 하는 방식
+            - 그 의미는, 상속의 관계를 바꾸고 싶으면 코드 자체를 바꿔야 한다는 것.
+        - extends 방식은 다중 상속을 지원하지 않음
+            - 여러개의 클래스에서 상속받고자 할 때 extends 로는 안됨.
+    - 함수를 만들어서 targetClass 로 제공된 class 에 baseClasses 로 제공된 class 들의 기능을 합성한다.
+    - 합성되는 class 에 상속관걔를 알리기 위해 interface 를 작성함.
+        - ex. interface NewsFeedApi extends Api {};
