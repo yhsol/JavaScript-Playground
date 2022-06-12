@@ -38,12 +38,42 @@ const store: Store = {
     feeds: [],
 }
 
-function getData<AjaxResponse>(url: string): AjaxResponse {
-    ajax.open('GET', url, false);
-    ajax.send();
-    
-    return JSON.parse(ajax.response);
+class Api {
+    url: string;
+    ajax: XMLHttpRequest;
+
+    // 주입 받아할 요소만 params 로 받음
+    constructor(url: string) {
+        this.url = url;
+        this.ajax = new XMLHttpRequest();
+    }
+
+    protected getRequest<T>(): T {
+        this.ajax.open('GET', this.url, false);
+        this.ajax.send();
+        
+        return JSON.parse(this.ajax.response);
+    }
 }
+
+class NewsFeedApi extends Api {
+    getData(): NewsFeed[] {
+        return this.getRequest<NewsFeed[]>();
+    }
+}
+
+class NewsDetailApi extends Api {
+    getData(): NewsDetail {
+        return this.getRequest<NewsDetail>();
+    }
+}
+
+// function getData<AjaxResponse>(url: string): AjaxResponse {
+//     ajax.open('GET', url, false);
+//     ajax.send();
+    
+//     return JSON.parse(ajax.response);
+// }
 
 function makeFeeds(feeds: NewsFeed[]) {
     for (let i = 0; i < feeds.length; i++) {
@@ -62,11 +92,12 @@ function updateView(html: string) {
 }
 
 function newsFeed() {
+    const api = new NewsFeedApi(NEWS_URL);
     let newsFeeds: NewsFeed[] = store.feeds; // getData(NEWS_URL);
     const newsList = [];
 
     if (newsFeeds.length === 0) {
-        newsFeeds = store.feeds = makeFeeds(getData<NewsFeed[]>(NEWS_URL));
+        newsFeeds = store.feeds = makeFeeds(api.getData());
     }
 
     // 변경할 부분을 마킹해 두고 template.replace 를 통해 변경한다.
@@ -126,7 +157,8 @@ function newsFeed() {
 
 function newsDetail() {
     const id = location.hash.substr(7)
-    const newsContent = getData<NewsDetail>(CONTENT_URL.replace('@id', id));
+    const api = new NewsDetailApi(CONTENT_URL.replace('@id', id));
+    const newsContent = api.getData();
 
     let template = `
         <div class="bg-gray-600 min-h-screen pb-8">
