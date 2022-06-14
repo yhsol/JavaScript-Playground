@@ -21,3 +21,4 @@
     - 함수를 만들어서 targetClass 로 제공된 class 에 baseClasses 로 제공된 class 들의 기능을 합성한다.
     - 합성되는 class 에 상속관걔를 알리기 위해 interface 를 작성함.
         - ex. interface NewsFeedApi extends Api {};
+- 사용하는 쪽에서 직접 구현하지 않고 상위 클래스를 통해 '기능'을 제공한다.
