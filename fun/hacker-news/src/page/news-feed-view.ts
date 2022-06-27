@@ -48,7 +48,7 @@ export default class NewsFeedView extends View {
     
     // 페이징 될 때마다 렌더를 다시 하기 위해 html 생성 부분을 바깥으로 빼서 함수로 만들고 콜백 실행때마다 새로 생성하고 실행한다.
     if (!this.store.hasFeeds) {
-      this.api.getData((data) => {
+      this.api.getDataWithPromise((data) => {
         this.store.setFeeds(data);
         this.renderView()
       })
